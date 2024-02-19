@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pandas-etl"
+version = "0.1.0"
+description = ""
+authors = ["Nicolas M. <mine.nicolas@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pandas_etl"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyyaml = "^6.0.1"
+print-color = "^0.4.6"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.6.2"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
