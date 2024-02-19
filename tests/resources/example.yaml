@@ -1,0 +1,35 @@
+extract:
+  - csv:
+      name: source_a
+      filepath_or_buffer: tests/resources/source_a.csv
+      sep: ";"
+  - csv:
+      name: source_b
+      filepath_or_buffer: tests/resources/source_b.csv
+      sep: ","
+transform:
+  - t1:
+      name: transform_1
+      source: source_a
+      target: target1
+  - t2:
+      name: transform_2
+      source: source_b
+      target: target2
+  - t3:
+      name: transform_3
+      left: target1
+      right: target2
+      target: target3
+  - t4:
+      name: transform_4
+      sources:
+        - target3
+        - target2
+      target: target4
+load:
+  - csv:
+      name: persist target4
+      source: target4
+      path_or_buf: /path/to/csv
+      sep: ","

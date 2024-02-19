@@ -10,6 +10,7 @@ packages = [{include = "pandas_etl"}]
 python = "^3.10"
 pyyaml = "^6.0.1"
 print-color = "^0.4.6"
+pandas = "^2.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
