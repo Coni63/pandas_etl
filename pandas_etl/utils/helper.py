@@ -22,8 +22,6 @@ def filter_parameters(func: Callable, input_parameters: dict) -> dict:
     """
     parameters = inspect.signature(func).parameters
 
-    print(parameters)
-
     return {key: value for key, value in input_parameters.items() if key in parameters}
 
 
@@ -85,3 +83,16 @@ def _format_message(message: str, step: int | None, max_step: int | None, max_le
         return message[: max_length - 3] + "..."
 
     return message
+
+
+def print_section(message: str) -> None:
+    """
+    Print a section message.
+
+    Args:
+        message (str): The message to print.
+    """
+    width = MAX_LENGTH - 6
+    print("\n" + "#" * MAX_LENGTH)
+    print(f"###{message:^{width}}###")
+    print("#" * MAX_LENGTH + "\n")

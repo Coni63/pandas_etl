@@ -1,0 +1,24 @@
+- allow custom scripts
+- prepare publish poetry / pipy
+- investigate on option to load plans inside plans
+- investigate on CLI commands
+- define set of ETL operations
+  - load from api
+  - load from json
+  - load from db (poetry add pandas_etl[postgres] approach ?)
+  - load from xml ?
+
+  - save to db
+  - save to json
+  - save to csv
+  - save to xml ?
+  - save to api ?
+
+  - a lot of transformations
+- investigate UI solution to setup pipelines
+- better error handling
+- include inplace when available and target == source
+- OOP approach for the workflow ?
+- add tests
+- setup readme
+- setup Github actions

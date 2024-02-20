@@ -5,18 +5,18 @@ import pandas as pd
 from .extract_csv import load_csv
 
 
-def load(extractor: str, params: dict) -> pd.DataFrame:
+def extract(extractor: str, params: dict, datasets: dict[str, pd.DataFrame]):
     """
     Load the data.
 
     Args:
+        extractor (str): The extractor to use.
         params (dict): The parameters to load the data.
-
-    Returns:
-        pd.DataFrame: The loaded data.
+        datasets (dict[str, pd.DataFrame]): All datasets currently available.
     """
     match extractor:
         case "csv":
-            return load_csv(params)
+            dataset_name = params["name"]
+            datasets[dataset_name] = load_csv(params)
         case _:
             raise NotImplementedError(f"Extractor '{extractor}' not supported.")

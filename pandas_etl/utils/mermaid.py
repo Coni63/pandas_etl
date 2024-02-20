@@ -51,9 +51,7 @@ def generate_mermaid(plan: dict, target_path: str):
                 mapping[target_name] = next(seq)
             else:
                 target_name = transformer["target"]
-                if target_name == source_name:
-                    mapping[target_name] = next(seq)
-                elif target_name not in mapping:
+                if target_name == source_name or target_name not in mapping:
                     mapping[target_name] = next(seq)
             target_key = mapping[target_name]
 
@@ -71,9 +69,7 @@ def generate_mermaid(plan: dict, target_path: str):
                 mapping[target_name] = next(seq)
             else:
                 target_name = transformer["target"]
-                if target_name == left_name:
-                    mapping[target_name] = next(seq)
-                elif target_name not in mapping:
+                if target_name == left_name or target_name not in mapping:
                     mapping[target_name] = next(seq)
             target_key = mapping[target_name]
 
@@ -84,9 +80,7 @@ def generate_mermaid(plan: dict, target_path: str):
             all_input_keys = [mapping[source_name] for source_name in transformer["sources"]]
 
             target_name = transformer["target"]
-            if target_name in transformer["sources"]:
-                mapping[target_name] = next(seq)
-            elif target_name not in mapping:
+            if target_name in transformer["sources"] or target_name not in mapping:
                 mapping[target_name] = next(seq)
             target_key = mapping[target_name]
 

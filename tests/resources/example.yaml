@@ -16,12 +16,12 @@ transform:
       name: transform_2
       source: source_b
       target: target2
-  - t3:
+  - join:
       name: transform_3
       left: target1
       right: target2
       target: target3
-  - t4:
+  - concat:
       name: transform_4
       sources:
         - target3
@@ -31,5 +31,5 @@ load:
   - csv:
       name: persist target4
       source: target4
-      path_or_buf: /path/to/csv
+      path_or_buf: tests/resources/source_c.csv
       sep: ","
