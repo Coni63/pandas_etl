@@ -64,4 +64,5 @@ exclude: |
         .vscode/.*|
         .*/env.py|
         .*/.coveragerc|
+        .*/resources/.*py|
     )$

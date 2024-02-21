@@ -2,43 +2,40 @@ from __future__ import annotations
 
 import pandas as pd
 
+from pandas_etl.utils.decorator import DataFrameTransformer
 from pandas_etl.utils.helper import filter_parameters
 
 
-def _join(datasets: dict[str, pd.DataFrame], params: dict) -> dict[str, pd.DataFrame]:
+@DataFrameTransformer
+def _join(dfs: list[pd.DataFrame], params: dict) -> pd.DataFrame:
     """
     Join the data.
 
     Args:
-        datasets (dict[str, pd.DataFrame]): All datasets currently available.
+        dfs (list[pd.DataFrame]): The data to join.
         params (dict): The parameters to join the data.
     """
-    left = datasets[params["left"]]
-    right = datasets[params["right"]]
-    target_name = params.get("target", left)
+    left, right = dfs
 
     filter_params = filter_parameters(pd.merge, params)
     del filter_params["left"]
     del filter_params["right"]
 
-    datasets[target_name] = pd.merge(left, right, **filter_params)
-    return datasets
+    return pd.merge(left, right, **filter_params)
 
 
-def _concat(datasets: dict[str, pd.DataFrame], params: dict) -> dict[str, pd.DataFrame]:
+@DataFrameTransformer
+def _concat(dfs: list[pd.DataFrame], params: dict) -> pd.DataFrame:
     """
     Concatenate the data.
 
     Args:
-        datasets (dict[str, pd.DataFrame]): All datasets currently available.
+        dfs (list[pd.DataFrame]): The data to concatenate.
         params (dict): The parameters to concatenate the data.
     """
-    dfs = [datasets[source] for source in params["sources"]]
-    target_name = params["target"]
 
     filter_params = filter_parameters(pd.concat, params)
     if "objs" in filter_params:
         del filter_params["objs"]
 
-    datasets[target_name] = pd.concat(dfs, **filter_params)
-    return datasets
+    return pd.concat(dfs, **filter_params)
