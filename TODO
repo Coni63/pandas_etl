@@ -21,5 +21,7 @@
 - add tests
 - setup readme
 - setup Github actions
+- custom load / extractor
+- plans and macros
 
 - analyzer of plan reading only header as per pyspark? or simply validate eavery input ?

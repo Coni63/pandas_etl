@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import pandas as pd
 
-from pandas_etl.utils.decorator import DataFrameTransformer
 from pandas_etl.utils.helper import filter_parameters
 
 
-@DataFrameTransformer
 def _join(dfs: list[pd.DataFrame], params: dict) -> pd.DataFrame:
     """
     Join the data.
@@ -24,7 +22,6 @@ def _join(dfs: list[pd.DataFrame], params: dict) -> pd.DataFrame:
     return pd.merge(left, right, **filter_params)
 
 
-@DataFrameTransformer
 def _concat(dfs: list[pd.DataFrame], params: dict) -> pd.DataFrame:
     """
     Concatenate the data.

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from .extract_csv import load_csv
+from .e_csv import load_csv
 
 
 def extract(extractor: str, params: dict, datasets: dict[str, pd.DataFrame]):

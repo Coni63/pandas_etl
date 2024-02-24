@@ -96,3 +96,25 @@ def print_section(message: str) -> None:
     print("\n" + "#" * MAX_LENGTH)
     print(f"###{message:^{width}}###")
     print("#" * MAX_LENGTH + "\n")
+
+
+def load_custom_function(params: dict) -> Callable:
+    """
+    Load a custom function from the given parameters.
+
+    Args:
+        params (dict): The parameters to load the function.
+
+    Returns:
+        Callable: The loaded function.
+    """
+    if "func" not in params:
+        raise ValueError("for custom function, 'func' is required.")
+
+    module_name, func_name = params["func"].rsplit(".", 1)
+    try:
+        module = __import__(module_name, fromlist=[func_name])
+        func = getattr(module, func_name)
+        return func
+    except (ImportError, AttributeError) as e:
+        raise ValueError(f"Error loading function '{func_name}' in {module_name}, {e}")

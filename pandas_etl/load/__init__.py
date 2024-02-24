@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from .load_csv import load_csv
+from .l_csv import load_csv
 
 
 def load(loader: str, params: dict, datasets: dict[str, pd.DataFrame]):
