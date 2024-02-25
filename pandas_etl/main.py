@@ -1,13 +1,14 @@
 from __future__ import annotations
 
+import sys
 from typing import Callable
 
 import pandas as pd
 import yaml
 
-import pandas_etl.extract
-import pandas_etl.load
-import pandas_etl.transform
+from pandas_etl.extract import extract
+from pandas_etl.load import load
+from pandas_etl.transform import transform
 from pandas_etl.utils.helper import print_error
 from pandas_etl.utils.helper import print_section
 from pandas_etl.utils.helper import print_success
@@ -54,21 +55,22 @@ def run(
     return on_failure
 
 
-def main(path_plan: str, include_mermaid: bool = False, fail_fast: bool = False):
+def main(path_plan: str, path_mermaid: str | None = None, fail_fast: bool = False):
     plan = load_plan(path_plan)
 
-    if include_mermaid:
+    if path_mermaid:
         from pandas_etl.utils.mermaid import generate_mermaid
 
-        target_path = path_plan.replace(".yaml", ".mermaid")
-        generate_mermaid(plan, target_path)
+        generate_mermaid(plan, path_mermaid)
 
     datasets: dict[str, pd.DataFrame] = {}
 
-    on_failure = run(datasets, plan["extract"], fail_fast, False, "extractors", pandas_etl.extract.extract)
-    on_failure = run(datasets, plan["transform"], fail_fast, on_failure, "transformers", pandas_etl.transform.transform)
-    on_failure = run(datasets, plan["load"], fail_fast, on_failure, "loaders", pandas_etl.load.load)
+    on_failure = run(datasets, plan["extract"], fail_fast, False, "extractors", extract)
+    on_failure = run(datasets, plan["transform"], fail_fast, on_failure, "transformers", transform)
+    on_failure = run(datasets, plan["load"], fail_fast, on_failure, "loaders", load)
+
+    sys.exit(1 if on_failure else 0)
 
 
 if __name__ == "__main__":
-    main("tests/resources/example.yaml", include_mermaid=True, fail_fast=True)
+    main("tests/resources/example.yaml", path_mermaid="tests/resources/example.mermaid", fail_fast=True)

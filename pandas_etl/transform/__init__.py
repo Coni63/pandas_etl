@@ -32,6 +32,9 @@ def transform(transform: str, params: dict, datasets: dict[str, pd.DataFrame]):
     elif "source" in params:
         dfs = datasets[params["source"]]
         first_name = params["source"]
+        if "target" not in params:
+            params["target"] = first_name
+            params["inplace"] = True  # set the inplace for functions that support it
     else:
         raise ValueError("Invalid/Missing parameters for DataFrameTransformer")
 
