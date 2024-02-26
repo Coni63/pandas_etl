@@ -66,11 +66,11 @@ def main(path_plan: str, path_mermaid: str | None = None, fail_fast: bool = Fals
     datasets: dict[str, pd.DataFrame] = {}
 
     on_failure = run(datasets, plan["extract"], fail_fast, False, "extractors", extract)
-    on_failure = run(datasets, plan["transform"], fail_fast, on_failure, "transformers", transform)
-    on_failure = run(datasets, plan["load"], fail_fast, on_failure, "loaders", load)
+    on_failure = run(datasets, plan.get("transform", []), fail_fast, on_failure, "transformers", transform)
+    on_failure = run(datasets, plan.get("load", []), fail_fast, on_failure, "loaders", load)
 
     sys.exit(1 if on_failure else 0)
 
 
 if __name__ == "__main__":
-    main("tests/resources/example.yaml", path_mermaid="tests/resources/example.mermaid", fail_fast=True)
+    main("tests/resources/sqlite.yaml", path_mermaid="tests/resources/sqlite.mermaid", fail_fast=True)

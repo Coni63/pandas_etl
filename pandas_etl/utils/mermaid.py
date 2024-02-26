@@ -108,7 +108,7 @@ def generate_graph(plan: dict) -> list[Node]:
         roots.append(node)
         leaves[dataset_name] = node
 
-    for transformer in plan["transform"]:
+    for transformer in plan.get("transform", []):
         _, transformer = list(transformer.items())[0]
 
         parents = _get_parents(transformer, leaves)
@@ -117,7 +117,7 @@ def generate_graph(plan: dict) -> list[Node]:
         for parent in parents:
             parent.children.append(child)
 
-    for loader in plan["load"]:
+    for loader in plan.get("load", []):
         _, loader = list(loader.items())[0]
 
         dataset_name = loader["source"]
