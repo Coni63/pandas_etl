@@ -7,10 +7,9 @@ from pandas_etl.utils.helper import load_custom_function
 
 def extract_custom(params: dict) -> pd.DataFrame:
     """
-    Save the given dataframe to CSV.
+    Call a custom function to load the data.
 
     Args:
-        df (pd.DataFrame): The dataframe to save.
         params (dict): The parameters to load the data.
     """
     func = load_custom_function(params)

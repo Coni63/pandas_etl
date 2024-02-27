@@ -1,6 +1,3 @@
-- prepare publish poetry / pipy
-- investigate on option to load plans inside plans
-- investigate on CLI commands
 - define set of ETL operations
   - load from api
   - load from json
@@ -14,14 +11,18 @@
   - save to api ?
 
   - a lot of transformations
-- investigate UI solution to setup pipelines
-- better error handling
-- include inplace when available and target == source
-- OOP approach for the workflow ?
+
+# Mandatory for V0
 - add tests
-- setup readme
 - setup Github actions
-- custom load / extractor
+- prepare publish poetry / pipy
+
+# Low priority
+- move to ruff in precommits
+
+# Later update
+- investigate on CLI commands
 - plans and macros
 
-- analyzer of plan reading only header as per pyspark? or simply validate eavery input ?
+# Future project
+- investigate UI solution to setup pipelines

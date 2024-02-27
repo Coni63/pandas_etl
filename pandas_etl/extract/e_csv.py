@@ -5,9 +5,9 @@ import pandas as pd
 from pandas_etl.utils.helper import filter_parameters
 
 
-def load_csv(params: dict) -> pd.DataFrame:
+def extract_csv(params: dict) -> pd.DataFrame:
     """
-    Load the data to a CSV file.
+    Load the data from a CSV file.
 
     Args:
         params (dict): The parameters to load the data.

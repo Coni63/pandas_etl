@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from pandas_etl.utils.helper import filter_parameters
 
 
-def load_sql(params: dict) -> pd.DataFrame:
+def extract_sql(params: dict) -> pd.DataFrame:
     """
     Load the data from a database.
 
