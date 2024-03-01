@@ -16,10 +16,14 @@ def extract_sql(params: dict) -> pd.DataFrame:
     Returns:
         pd.DataFrame: The loaded data.
     """
+    try:
+        engine = create_engine(params["con"])
 
-    engine = create_engine(params["con"])
+        filtered_params = filter_parameters(pd.read_sql, params)
+        del filtered_params["con"]
 
-    filtered_params = filter_parameters(pd.read_sql, params)
-    del filtered_params["con"]
-
-    return pd.read_sql(con=engine, **filtered_params)
+        return pd.read_sql(con=engine, **filtered_params)
+    except Exception as e:
+        raise e
+    finally:
+        engine.dispose()

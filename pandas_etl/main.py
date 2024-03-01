@@ -62,7 +62,7 @@ def _run(
     print_section(description.upper())
     total_loader = len(steps)
     for i, step in enumerate(steps):
-        if on_failure:
+        if on_failure and fail_fast:
             print_warning(f"Fail fast is enabled. Skipping remaining {description}.")
             break
 
@@ -72,8 +72,7 @@ def _run(
             print_success(f"{description.title()} {key} ran successfully.", i, total_loader)
         except Exception as e:
             print_error(f"Error running {description} {key}: {e}", i, total_loader)
-            if fail_fast:
-                on_failure = True
+            on_failure = True
     return datasets, on_failure
 
 

@@ -16,15 +16,20 @@ def load_sql(df: pd.DataFrame, params: dict):
     """
     filtered_params = filter_parameters(df.to_sql, params)
 
-    engine = create_engine(params["con"])
+    try:
+        engine = create_engine(params["con"])
 
-    # con parameter is the connection string
-    # to_sql requires a connection object instead
-    del filtered_params["con"]
+        # con parameter is the connection string
+        # to_sql requires a connection object instead
+        del filtered_params["con"]
 
-    # name is used to describe a stage.
-    # For to_sql, the name parameter is the tablename from the config
-    if "name" in filtered_params:
-        del filtered_params["name"]
+        # name is used to describe a stage.
+        # For to_sql, the name parameter is the tablename from the config
+        if "name" in filtered_params:
+            del filtered_params["name"]
 
-    df.to_sql(name=params["tablename"], con=engine, **filtered_params)
+        df.to_sql(name=params["tablename"], con=engine, **filtered_params)
+    except Exception as e:
+        raise e
+    finally:
+        engine.dispose()

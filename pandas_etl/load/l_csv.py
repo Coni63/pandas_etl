@@ -13,6 +13,5 @@ def load_csv(df: pd.DataFrame, params: dict):
         df (pd.DataFrame): The dataframe to save.
         params (dict): The parameters to load the data.
     """
-    params = filter_parameters(df.to_csv, params)
-
-    df.to_csv(**params)
+    filtered_params = filter_parameters(df.to_csv, params)
+    df.to_csv(**filtered_params)

@@ -8,14 +8,17 @@ extract:
       filepath_or_buffer: tests/resources/source_b.csv
       sep: ","
 transform:
-  - t1:
-      name: transform_1
+  - rename:
+      name: rename_columns
       source: source_a
       target: target1
-  - t2:
+      columns:
+        firstname: "first_name"
+  - filter:
       name: transform_2
       source: source_b
       target: target2
+      expr: "id < 20"
   - join:
       name: transform_3
       left: target1
@@ -33,3 +36,4 @@ load:
       source: target4
       path_or_buf: tests/resources/source_c.csv
       sep: ","
+      index: False
