@@ -3,7 +3,10 @@ from __future__ import annotations
 import pandas as pd
 
 from .e_csv import extract_csv
+from .e_excel import extract_excel
+from .e_json import extract_json
 from .e_sql import extract_sql
+from .e_xml import extract_xml
 from pandas_etl.utils.exceptions import KeyMissingError
 
 
@@ -22,6 +25,9 @@ def extract(extractor: str, params: dict, datasets: dict[str, pd.DataFrame]) -> 
     mapping = {
         "csv": extract_csv,
         "sql": extract_sql,
+        "excel": extract_excel,
+        "json": extract_json,
+        "xml": extract_xml,
     }
 
     if extractor not in mapping:

@@ -9,8 +9,7 @@ def test_load_sql(temp_file, datasets):
 
     conn = f"sqlite:///{temp_file}"
 
-    # this is tested in tests/load/test_sql.py
-    # just create the table
+    # just create the table - this is tested in tests/load/test_sql.py
     load_sql(test_df, {"con": conn, "tablename": "test", "index": False})
 
     df = extract_sql({"con": conn, "sql": "SELECT * FROM test"})

@@ -1,19 +1,9 @@
 - define set of ETL operations
-  - load from api
-  - load from json
-  - load from db (poetry add pandas_etl[postgres] approach ?)
-  - load from xml ?
-
-  - save to db
-  - save to json
-  - save to csv
-  - save to xml ?
-  - save to api ?
-
-  - a lot of transformations
+- load from api
+- save to api ?
+- update docs
 
 # Mandatory for V0
-- add tests
 - setup Github actions
 - prepare publish poetry / pipy
 
