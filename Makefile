@@ -3,7 +3,7 @@ install:
 	poetry run pre-commit install
 
 unittest:
-	poetry run pytest -v --cov-report term  --cov-report xml:coverage.xml --cov=pandas_etl tests/
+	poetry run pytest --cov-report term  --cov-report xml:coverage.xml --cov=pandas_etl tests/
 
 run:
 	poetry run python -m pandas_etl.main

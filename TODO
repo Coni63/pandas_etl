@@ -7,9 +7,6 @@
 - setup Github actions
 - prepare publish poetry / pipy
 
-# Low priority
-- move to ruff in precommits
-
 # Later update
 - investigate on CLI commands
 - plans and macros
