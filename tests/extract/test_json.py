@@ -12,7 +12,7 @@ def test_extract_json(datasets):
     test_df.to_json(buffer, orient="records")
     buffer.seek(0)
 
-    params = {"path_or_buf": buffer, "orient": "records"}
+    params = {"path_or_buffer": buffer, "orient": "records"}
 
     df = extract_json(params)
     assert len(df) == 3

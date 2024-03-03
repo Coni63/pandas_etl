@@ -61,18 +61,139 @@ This lead to the following workflow:
 ### SQL
 
 ```yaml
+  - sql:                                                 # loader type
+      name: source_a                                     # dataset name
+      sql: SELECT * FROM foo
+      con: sqlite:///database.sqlite
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html
 ```
 
-### CUSTOM EXTRACTOR
+### XML
 
 ```yaml
+  - xml:                                                 # loader type
+      name: source_a                                     # dataset name
+      filepath_or_buffer: path/to/source_a.xml           # or "filepath_or_buf" as per documentation
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_xml.html
+```
+
+### JSON
+
+```yaml
+  - json:                                                # loader type
+      name: source_a                                     # dataset name
+      filepath_or_buffer: path/to/source_a.json          # or "filepath_or_buf" as per documentation
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_json.html
+```
+
+### EXCEL
+
+```yaml
+  - excel:                                                # loader type
+      name: source_a                                      # dataset name
+      filepath_or_buffer: path/to/source_a.xsl(x)         # or "io" as per documentation
+      sheet_name: Sheet 1
+      engine: xlrd
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_excel.html
+```
+
+### CUSTOM
+
+```yaml
+  - custom:
+      name: source_a
+      func: path.to.module.function
+      # any parameters you need for the custom loader you may need
 ```
 
 # TRANSFORM
 
-### CUSTOM TRANSFORMER
+## REDUCERS
+
+### JOIN
+
+Join 2 dataframes (inner, left, right, outer, ...) -- see documentation
 
 ```yaml
+  - join:
+      name: Join A and B
+      left: left_source
+      right: right_source
+      target: target
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.merge.html
+```
+
+### CONCAT
+
+Stack dataframes vertically or horizontally
+
+```yaml
+  - concat:
+      name: Join A and B
+      sources:
+        - source1
+        - source2
+        - source3
+      target: target
+      # https://pandas.pydata.org/docs/reference/api/pandas.concat.html
+```
+
+## MAPPERS
+
+```yaml
+  - rename:
+      name: rename columns
+      source: source
+      target: target
+      columns:
+        from_name: target_name
+        A: B
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.rename.html
+```
+
+```yaml
+  - drop:
+      name: Custom mapper
+      source: source1
+      target: target
+      columns:
+        - A
+        - B
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.drop.html
+```
+
+```yaml
+  - filter:
+      name: Filter the data
+      source: source1
+      target: target
+      expr: A > 10
+      # https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.query.html
+```
+
+### CUSTOM
+
+You can create your own transformer (reducer or mapper) by providing either "source" or "sources"
+
+```yaml
+  - custom:
+      name: Custom reducer
+      sources:
+        - source1
+        - source2
+        - source3
+      target: target
+      func: path.to.module.function
+      # other parameters
+```
+
+```yaml
+  - custom:
+      name: Custom mapper
+      source: source1
+      target: target
+      func: path.to.module.function
+      # other parameters
 ```
 
 # LOAD
@@ -83,17 +204,61 @@ This lead to the following workflow:
   - csv:
       name: Save the target
       source: target
-      path_or_buf: path/to/result.csv
+      filepath_or_buffer: path/to/result.csv               # or "path_or_buf" as per documentation
       # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_csv.html
 ```
-
 
 ### SQL
 
 ```yaml
+  - csv:
+      name: Save the target
+      source: target
+      con: sqlite:///database.sqlite
+      tablename: my_table
+      schema: null
+      if_exists: replace
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
 ```
 
-### CUSTOM LOADER
+### XML
 
 ```yaml
+  - xml:
+      name: Save the target
+      source: target
+      filepath_or_buffer: path/to/source_a.xml           # or "filepath_or_buf" as per documentation
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_xml.html
+```
+
+### JSON
+
+```yaml
+  - json:
+      name: Save the target
+      source: target
+      filepath_or_buffer: path/to/source_a.json          # or "path_or_buf" as per documentation
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_json.html
+```
+
+### EXCEL
+
+```yaml
+  - excel:
+      name: Save the target
+      source: target
+      filepath_or_buffer: path/to/source_a.xsl(x)
+      sheet_name: Sheet 1
+      engine: xlrd
+      # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.to_excel.html
+```
+
+### CUSTOM
+
+```yaml
+  - custom:
+      name: Save the target
+      source: target
+      func: path.to.module.function
+      # any parameters you need for the custom loader you may need
 ```

@@ -3,6 +3,7 @@ from __future__ import annotations
 import pandas as pd
 
 from .e_csv import extract_csv
+from .e_custom import extract_custom
 from .e_excel import extract_excel
 from .e_json import extract_json
 from .e_sql import extract_sql
@@ -28,6 +29,7 @@ def extract(extractor: str, params: dict, datasets: dict[str, pd.DataFrame]) -> 
         "excel": extract_excel,
         "json": extract_json,
         "xml": extract_xml,
+        "custom": extract_custom,
     }
 
     if extractor not in mapping:

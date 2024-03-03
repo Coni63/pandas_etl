@@ -7,7 +7,7 @@ from pandas_etl.load.l_xml import load_xml
 
 def test_load_xml_renamed_key(mocker, datasets, temp_file):
     spy_to_xml = mocker.spy(pd.DataFrame, "to_xml")
-    input_params = {"path_or_buffer": temp_file, "invalid_param": "invalid"}
+    input_params = {"filepath_or_buffer": temp_file, "invalid_param": "invalid"}
     provided_params = {"path_or_buffer": temp_file}
 
     test_df = datasets["df1"]
@@ -18,7 +18,7 @@ def test_load_xml_renamed_key(mocker, datasets, temp_file):
 
 def test_load_xml_rename_buffer(mocker, datasets, temp_file):
     spy_to_xml = mocker.spy(pd.DataFrame, "to_xml")
-    input_params = {"path_or_buf": temp_file, "invalid_param": "invalid"}
+    input_params = {"path_or_buffer": temp_file, "invalid_param": "invalid"}
     provided_params = {"path_or_buffer": temp_file}
 
     test_df = datasets["df1"]

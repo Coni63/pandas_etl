@@ -3,6 +3,7 @@ from __future__ import annotations
 import pandas as pd
 
 from .l_csv import load_csv
+from .l_custom import load_custom
 from .l_excel import load_excel
 from .l_json import load_json
 from .l_sql import load_sql
@@ -28,6 +29,7 @@ def load(loader: str, params: dict, datasets: dict[str, pd.DataFrame]) -> dict[s
         "excel": load_excel,
         "json": load_json,
         "xml": load_xml,
+        "custom": load_custom,
     }
 
     if "source" not in params:

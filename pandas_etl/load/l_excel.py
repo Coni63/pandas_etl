@@ -13,5 +13,11 @@ def load_excel(df: pd.DataFrame, params: dict):
         df (pd.DataFrame): The dataframe to save.
         params (dict): The parameters to load the data.
     """
+    path = params["filepath_or_buffer"]
+
     filtered_params = filter_parameters(df.to_excel, params)
-    df.to_excel(**filtered_params)
+
+    with pd.ExcelWriter(path) as writer:
+        filtered_params["excel_writer"] = writer
+
+        df.to_excel(**filtered_params)

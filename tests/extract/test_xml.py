@@ -26,7 +26,7 @@ def test_extract_json():
     </data>
     """
     buffer = StringIO(data_xml)
-    params = {"path_or_buf": buffer}
+    params = {"path_or_buffer": buffer}
 
     df = extract_xml(params)
     assert len(df) == 3

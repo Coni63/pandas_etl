@@ -1,7 +1,3 @@
-- define set of ETL operations
-- load from api
-- save to api ?
-- update docs
 
 # Mandatory for V0
 - setup Github actions
@@ -10,6 +6,9 @@
 # Later update
 - investigate on CLI commands
 - plans and macros
+- load from api
+- save to api ?
+- lookup transform
 
 # Future project
 - investigate UI solution to setup pipelines
