@@ -1,0 +1,49 @@
+
+  .col {
+    overflow: auto;
+    width: 300px;
+    height: 100%;
+    border-right: 1px solid var(--border-color);
+  }
+
+  .drag-drawflow {
+    line-height: 50px;
+    border-bottom: 1px solid var(--border-color);
+    padding-left: 20px;
+    cursor: move;
+    user-select: none;
+  }
+  .menu {
+    position: absolute;
+    height: 40px;
+    display: block;
+    background: white;
+    width: 100%;
+  }
+  .menu ul {
+    padding: 0px;
+    margin: 0px;
+    line-height: 40px;
+  }
+
+  .menu ul li {
+    display: inline-block;
+    margin-left: 10px;
+    border-right: 1px solid var(--border-color);
+    padding-right: 10px;
+    line-height: 40px;
+    cursor: pointer;
+  }
+
+  .menu ul li.selected {
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 1500px) {
+    .col {
+      width: 50px;
+    }
+    .col .drag-drawflow span {
+      display:none;
+    }
+  }

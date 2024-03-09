@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --border-color: #cacaca;
+    --background-color: #ffffff;
+
+    --background-box-title: #f7f7f7;
+  }
+
+  html, body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+  }

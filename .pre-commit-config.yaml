@@ -52,4 +52,5 @@ exclude: |
         .*/env.py|
         .*/.coveragerc|
         .*/resources/.*py|
+        pandas-etl-ui/.*|
     )$

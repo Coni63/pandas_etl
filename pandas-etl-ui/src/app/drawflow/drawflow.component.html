@@ -1,0 +1,15 @@
+<div id="drawflow" #drawflow (dragover)="allowDrop($event)" (drop)="drop($event)">
+  <div class="bottom-menu">
+    <div class="btn-clear">
+      <fa-icon [icon]="eraser_icon" (click)="clear()"></fa-icon>
+    </div>
+    <div class="btn-lock">
+      <fa-icon [icon]="lock ? lock_icon : unlock_icon" (click)="toogleLock()"></fa-icon>
+    </div>
+    <div class="bar-zoom">
+      <fa-icon [icon]="zoom_out_icon" (click)="zoomOut()"></fa-icon>
+      <fa-icon [icon]="zoom_reset_icon" (click)="zoomReset()"></fa-icon>
+      <fa-icon [icon]="zoom_in_icon" (click)="zoomIn()"></fa-icon>
+    </div>
+  </div>
+</div>

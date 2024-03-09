@@ -10,3 +10,6 @@ run:
 
 check:
 	poetry run pre-commit run --all-files
+
+ui:
+	cd pandas-etl-ui && ng serve -o
