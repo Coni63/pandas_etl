@@ -1,0 +1,5 @@
+<div class="menu">
+    <ul>
+      <li *ngFor="let tab of tabs.tabs" (click)="changeTab(tab)" [class.selected] = "tab === tabs.selectedTab">{{ tab }}</li>
+    </ul>
+  </div>

@@ -30,8 +30,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/drawflow/dist/drawflow.min.css"
+              "node_modules/drawflow/dist/drawflow.min.css",
+              "src/styles.scss"
             ],
             "scripts": []
           },

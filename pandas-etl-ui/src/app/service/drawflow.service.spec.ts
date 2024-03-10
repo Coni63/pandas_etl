@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GraphService } from './graph.service';
+import { GraphService } from './drawflow.service';
 
 describe('GraphService', () => {
   let service: GraphService;
