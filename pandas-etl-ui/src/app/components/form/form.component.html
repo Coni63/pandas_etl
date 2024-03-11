@@ -1,0 +1,8 @@
+<div class="element" [ngClass]="{'open': isOpen, 'close': !isOpen}">
+    <div class="title">Description</div>
+    <input type="text" placeholder="Description" />
+    <div class="title">Parameters</div>
+    <textarea [(ngModel)]="params" (input)="formatJson()"  [class.invalid]="!validJson"></textarea>
+    <button (click)="save()" [disabled]="!validJson">Save</button>
+</div>
+

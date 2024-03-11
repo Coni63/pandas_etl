@@ -58,8 +58,18 @@ export class DrawflowComponent implements OnInit {
 
       if (data) {
         console.log(data);
-        // addNodeToDrawFlow(mobile_item_selec, mobile_last_move.touches[0].clientX, mobile_last_move.touches[0].clientY);
         this.drawflowService.addNode(data, x, y);
+
+        document.querySelectorAll('.open-modal').forEach((element: Element) => {
+          let elem = element as HTMLElement;
+
+          elem.removeEventListener('click', () => {});
+
+          elem.addEventListener('click', () => {
+            console.log('open modal');
+            // Add your modal opening logic here
+          });
+        });
       }
     }
   }

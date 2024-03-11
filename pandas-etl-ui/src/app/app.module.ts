@@ -10,6 +10,8 @@ import { TabsComponent } from './components/tabs/tabs.component';
 import { DrawflowService } from './service/drawflow.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
+import { FormComponent } from './components/form/form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,12 +20,14 @@ import { MainpageComponent } from './components/mainpage/mainpage.component';
     HeaderComponent,
     TabsComponent,
     SidebarComponent,
-    MainpageComponent
+    MainpageComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [
     DrawflowService
