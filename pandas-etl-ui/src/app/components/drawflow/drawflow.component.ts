@@ -57,7 +57,6 @@ export class DrawflowComponent implements OnInit {
       const data = event.dataTransfer?.getData("text");
 
       if (data) {
-        console.log(data);
         this.drawflowService.addNode(data, x, y);
 
         document.querySelectorAll('.open-modal').forEach((element: Element) => {

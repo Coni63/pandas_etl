@@ -17,7 +17,7 @@ export class FormComponent {
 
   ngOnInit() {
     this.formSubscription = this.drawflowService.form$.subscribe(state => {
-      // this.isOpen = state.selectedNode !== '';
+      this.isOpen = state.selectedNode !== '';
       this.selectedNode = state.selectedNode;
       this.params = JSON.stringify(state.data, null, 2);
     });
