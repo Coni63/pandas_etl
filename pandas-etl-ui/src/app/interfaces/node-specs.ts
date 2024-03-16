@@ -9,3 +9,17 @@ export interface NodeSpecs {
     data: any;
     html: string;
 }
+
+
+export interface ActionState {
+    key: string;
+    name: string;
+    inputs: number;
+    outputs: number;
+    allow_multiple_input: boolean;
+    classname: string;
+}
+
+export interface AllActionsState {
+    [key: string]: ActionState[];
+}
