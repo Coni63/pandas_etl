@@ -1,3 +1,6 @@
+import { IconPrefix, IconName } from '@fortawesome/fontawesome-svg-core';
+
+
 export interface NodeSpecs {
     name: string;
     inputs: number;
@@ -18,6 +21,7 @@ export interface ActionState {
     outputs: number;
     allow_multiple_input: boolean;
     classname: string;
+    icon: [IconPrefix, IconName];
 }
 
 export interface AllActionsState {

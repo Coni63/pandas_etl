@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faLockOpen } from '@fortawesome/free-solid-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 import { Subscription } from 'rxjs';
 import { NodeFactoryService } from 'src/app/service/node-factory.service';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome'
 
 @Component({
   selector: 'app-sidebar',
@@ -9,11 +11,12 @@ import { NodeFactoryService } from 'src/app/service/node-factory.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  unlock_icon = faLockOpen;
   actionsSubscription!: Subscription;
   items: any = {}
 
-  constructor(private nodeFactoryService: NodeFactoryService) {  }
+  constructor(private nodeFactoryService: NodeFactoryService, private library: FaIconLibrary) {
+    library.addIconPacks(fas, far);
+  }
 
   ngOnInit() {
     this.actionsSubscription = this.nodeFactoryService.actions$.subscribe(data => {

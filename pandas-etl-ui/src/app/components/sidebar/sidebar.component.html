@@ -1,13 +1,13 @@
     <div class="col">
       <div class="drag-drawflow" draggable="true" *ngFor="let item of items['extractors']" (dragstart)="drag($event, item['key'])">
-        <fa-icon [icon]="unlock_icon"></fa-icon><span> {{item["name"]}}</span>
+        <fa-icon [icon]="item['icon']"></fa-icon><span> {{item["name"]}}</span>
       </div>
       <hr/>
       <div class="drag-drawflow" draggable="true" *ngFor="let item of items['processors']" (dragstart)="drag($event, item['key'])">
-        <fa-icon [icon]="unlock_icon"></fa-icon><span> {{item["name"]}}</span>
+        <fa-icon [icon]="item['icon']"></fa-icon><span> {{item["name"]}}</span>
       </div>
       <hr/>
       <div class="drag-drawflow" draggable="true" *ngFor="let item of items['loaders']" (dragstart)="drag($event, item['key'])">
-        <fa-icon [icon]="unlock_icon"></fa-icon><span> {{item["name"]}}</span>
+        <fa-icon [icon]="item['icon']"></fa-icon><span> {{item["name"]}}</span>
       </div>
     </div>

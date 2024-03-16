@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AllActionsState, NodeSpecs } from '../interfaces/node-specs';
 import { BehaviorSubject } from 'rxjs';
+import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,7 @@ export class NodeFactoryService {
         outputs: 1,
         allow_multiple_input: false,
         classname: 'extractor-node',
+        icon: ['fas', 'user'],
       }
     ],
     "processors": [
@@ -33,6 +35,7 @@ export class NodeFactoryService {
         outputs: 1,
         allow_multiple_input: true,
         classname: 'processor-node',
+        icon: ['fas', 'coffee'],
       },
        {
         key: 'join',
@@ -41,6 +44,7 @@ export class NodeFactoryService {
         outputs: 1,
         allow_multiple_input: true,
         classname: 'processor-node join-node',
+        icon: ['far', 'bookmark'],
       }
     ],
     "loaders": [
@@ -51,6 +55,7 @@ export class NodeFactoryService {
         outputs: 0,
         allow_multiple_input: false,
         classname: 'loader-node single-input',
+        icon: ['far', 'circle'],
       }
     ]
   }
@@ -77,7 +82,7 @@ export class NodeFactoryService {
             posy: posy,
             classname: action.classname,
             data: this.getDefaultData(),
-            html: this.getDefaultHTML(action.name),
+            html: this.getDefaultHTML(action.name, action.icon),
           }
         }
 
@@ -92,14 +97,21 @@ export class NodeFactoryService {
       posy: posy,
       classname: "simple-node",
       data: this.getDefaultData(),
-      html: this.getDefaultHTML("N/A"),
+      html: this.getDefaultHTML("N/A", null),
     }
   }
 
-  private getDefaultHTML(name: string): string {
+  private getDefaultHTML(name: string, icon: [IconPrefix, IconName] | null): string {
+    let iconHtml = '';
+    if (icon) {
+      // not working because it's not controlled after by angular
+      iconHtml = `<fa-icon [icon]="['${icon[0]}', '${icon[1]}']"></fa-icon>`;
+    }
     return  `
     <div>
-      <div class="title-box"><i class="fab fa-github "></i> ${name}</div>
+      <div class="title-box">
+        ${iconHtml}&nbsp;${name}
+      </div>
       <div class="box">
         <p class="box-key" df-description>Description</p>
       </div>
