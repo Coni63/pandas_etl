@@ -34,6 +34,18 @@ export class NodeFactoryService {
           data: this.getDefaultData(),
           html: this.getDefaultHTML(),
         };
+      case 'join':
+        return {
+          name: 'Join',
+          inputs: 2,
+          outputs: 1,
+          allow_multiple_input: true,
+          posx: posx,
+          posy: posy,
+          classname: 'processor-node join-node',
+          data: this.getDefaultData(),
+          html: this.getDefaultHTML(),
+        };
       default: {
         return {
           name: 'GithubStars',

@@ -152,13 +152,9 @@ export class DrawflowService {
       console.log('Connection created');
       console.log(connection);
 
-      let nodeid = connection.input_id;
-      let inputid = connection.input_class;
-
-      let node = this.editor.getNodeFromId(nodeid);
-
+      let node = this.editor.getNodeFromId(connection.input_id);
       if (node.class.includes("single-input")) {
-        let conns = node.inputs[inputid].connections;
+        let conns = node.inputs[connection.input_class].connections;
         if (conns.length > 1) {
           this.editor.removeSingleConnection(connection.output_id, connection.input_id, connection.output_class, connection.input_class);
         }

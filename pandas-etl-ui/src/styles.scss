@@ -161,3 +161,22 @@
     background: #6f7eaa;
   }
 }
+
+.join-node .inputs .input:nth-child(1):before {
+  display: block;
+  content: "L";
+  position: relative;
+  right: -3px;
+  top: 1px;
+  color: #555555;
+  font-size: 12px;
+}
+.join-node .inputs .input:nth-child(2):before {
+  display: block;
+  content: "R";
+  position: relative;
+  right: -3px;
+  top: 1px;
+  color: #555555;
+  font-size: 12px;
+}
