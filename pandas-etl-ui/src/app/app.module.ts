@@ -12,6 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { FormComponent } from './components/form/form.component';
 import { FormsModule } from '@angular/forms';
+import { StateService } from './service/state.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    DrawflowService
+    DrawflowService,
+    StateService,
   ],
   bootstrap: [AppComponent]
 })

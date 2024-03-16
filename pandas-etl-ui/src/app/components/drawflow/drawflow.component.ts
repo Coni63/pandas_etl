@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import Drawflow from 'drawflow'
 import { faLock, faLockOpen, faMagnifyingGlassPlus, faMagnifyingGlassMinus, faMagnifyingGlass, faEraser } from '@fortawesome/free-solid-svg-icons';
 import { DrawflowService } from '../../service/drawflow.service';
+import { StateService } from 'src/app/service/state.service';
 
 @Component({
   selector: 'app-drawflow',
@@ -22,11 +23,26 @@ export class DrawflowComponent implements OnInit {
   editor!: Drawflow;
 
 
-  constructor(private drawflowService: DrawflowService) { }
+  constructor(private drawflowService: DrawflowService, private stateService: StateService) { }
 
   ngOnInit() {
     const id = this.drawflowDiv.nativeElement;
     this.drawflowService.initializeDrawflow(id);
+
+    this.loadSavedState();
+    setInterval(() => {this.saveState();}, 10000);
+  }
+
+  saveState() {
+    let data = this.drawflowService.exportPlan();
+    this.stateService.saveState(data);
+  }
+
+  loadSavedState() {
+    const savedState = this.stateService.loadState();
+    if (savedState) {
+      this.drawflowService.loadPlan(savedState);
+    }
   }
 
   toogleLock() {
