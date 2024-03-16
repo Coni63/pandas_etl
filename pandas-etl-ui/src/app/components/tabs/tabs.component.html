@@ -1,5 +1,14 @@
 <div class="menu">
     <ul>
-      <li *ngFor="let tab of tabs.tabs" (click)="changeTab(tab)" [class.selected] = "tab === tabs.selectedTab">{{ tab }}</li>
+      <li *ngFor="let tab of tabs.tabs" (click)="changeTab(tab)" [class.selected] = "tab === tabs.selectedTab">
+        <div>
+          <span class="tab-title">{{ tab }}</span>
+          <span class="tab-close">
+            <fa-icon [icon]="remove_icon" *ngIf="tab === tabs.selectedTab" (click)="removeTab()"></fa-icon>
+          </span>
+        </div>
+      </li>
+      <li (click)="addTab()">
+        <fa-icon [icon]="add_icon"></fa-icon>
     </ul>
   </div>

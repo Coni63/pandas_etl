@@ -18,9 +18,27 @@
     padding-right: 10px;
     line-height: 40px;
     cursor: pointer;
+    width: 100px;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+
+      .tab-title {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 75px;
+      }
+
+      .tab-close {
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
 }
 
 .menu ul li.selected {
     font-weight: bold;
     background: #ffffff;
-  }
+}

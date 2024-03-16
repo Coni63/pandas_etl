@@ -44,23 +44,25 @@ export class DrawflowService {
   }
 
   private updateModulesList() {
-    let data = this.editor.export();
+    let tabs = Object.keys(this.editor.drawflow.drawflow);
     this.selectedModule = this.editor.module;
-    let state = { selectedTab: this.selectedModule, tabs: Object.keys(data.drawflow) } as TabState;
+    let state = { selectedTab: this.selectedModule, tabs: tabs } as TabState;
     this.tabsSubject.next(state);
     console.log(state);
   }
 
   addModule(name: string) {
-    let data = this.editor.export();
     this.editor.addModule(name);
-    this.selectedModule = this.editor.module;
-    let state = { selectedTab: this.selectedModule, tabs: Object.keys(data.drawflow) } as TabState;
-    this.tabsSubject.next(state);
+    this.updateModulesList();
   }
 
   changeModule(name: string) {
     this.editor.changeModule(name);
+    this.updateModulesList();
+  }
+
+  removeModule(name: string) {
+    this.editor.removeModule(name);
     this.updateModulesList();
   }
 
