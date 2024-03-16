@@ -42,7 +42,7 @@ export class NodeFactoryService {
           allow_multiple_input: false,
           posx: posx,
           posy: posy,
-          classname: 'loader-node',
+          classname: 'loader-node single-input',
           data: this.getDefaultData(),
           html: this.getDefaultHTML(),
         };
