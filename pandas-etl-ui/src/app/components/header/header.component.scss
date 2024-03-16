@@ -29,3 +29,46 @@
     color: black;
     font-size: 24px;
   }
+
+
+  .actions {
+    float: right;
+    position: absolute;
+    top: 10px;
+    right: 60px;
+    height: 40px;
+    display: flex;
+    gap: 10px;
+    color: white;
+    z-index: 5;
+  }
+
+  .btn-import {
+    display: flex;
+    font-size: 24px;
+    width: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #e3195a;
+    border-radius: 4px;
+  }
+
+  .btn-export {
+    display: flex;
+    font-size: 24px;
+    width: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #555555;
+    border-radius: 4px;
+  }
+
+  .btn-run {
+    display: flex;
+    font-size: 24px;
+    width: 50px;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #555555;
+    border-radius: 4px;
+  }

@@ -1,4 +1,10 @@
 <header>
     <h2>{{ title }}</h2>
     <div class="github-link"><a [href]="github_url" target="_blank"><fa-icon [icon]="github_icon"></fa-icon></a></div>
+    <div class="actions">
+        <input type="file" #fileInput style="display: none" (change)="importPlan($event)">
+        <div class="btn-export"><fa-icon [icon]="export_icon"(click)="exportPlan()"></fa-icon></div>
+        <div class="btn-import"><fa-icon [icon]="import_icon" (click)="fileInput.click()"></fa-icon></div>
+        <div class="btn-run"><fa-icon [icon]="run_icon" (click)="runPlan()"></fa-icon></div>
+    </div>
 </header>

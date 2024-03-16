@@ -43,6 +43,20 @@ export class DrawflowService {
     return this.editor;
   }
 
+  loadPlan(plan: any) {
+    let backup = this.editor.export();
+    try {
+      this.editor.import(plan);
+    } catch (error) {
+      console.error("Error importing plan", error);
+      this.editor.import(backup);
+    }
+  }
+
+  exportPlan() {
+    return this.editor.export();
+  }
+
   private updateModulesList() {
     let tabs = Object.keys(this.editor.drawflow.drawflow);
     this.selectedModule = this.editor.module;
