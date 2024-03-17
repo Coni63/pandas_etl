@@ -18,6 +18,9 @@ oracledb = {version = "*", optional = true}
 xlrd = {version = "*", optional = true}
 openpyxl = {version = "*", optional = true}
 lxml = {version = "*", optional = true}
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.28.0"}
+pydantic = "^2.6.4"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.2"

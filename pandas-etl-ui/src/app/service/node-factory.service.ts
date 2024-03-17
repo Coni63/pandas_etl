@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AllActionsState, NodeSpecs } from '../interfaces/node-specs';
 import { BehaviorSubject } from 'rxjs';
 import { IconName, IconPrefix } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -60,12 +61,10 @@ export class NodeFactoryService {
     ]
   }
 
-  constructor() {
-    this.getActions();
-  }
-
-  getActions() {
-    this.actionsSubject.next(this.data);
+  constructor(private apiService: ApiService) {
+    this.apiService.getData().subscribe(data => {
+      this.actionsSubject.next(data);
+    });
   }
 
   getNodeData(nodeType: string, posx: number, posy: number): NodeSpecs {

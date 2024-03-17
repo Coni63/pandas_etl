@@ -52,6 +52,11 @@ export class DrawflowService {
     return this.editor.export();
   }
 
+  getCurrentModulePlan(): any {
+    let curr_module = this.editor.module;
+    return this.editor.drawflow.drawflow[curr_module].data;
+  }
+
   private updateModulesList() {
     let tabs = Object.keys(this.editor.drawflow.drawflow);
     this.selectedModule = this.editor.module;

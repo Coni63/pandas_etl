@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faDownload, faPlay, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { ApiService } from 'src/app/service/api.service';
 import { DrawflowService } from 'src/app/service/drawflow.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class HeaderComponent {
   title = "Pandas ETL UI"
   github_url = "https://github.com/Coni63/pandas_etl"
 
-  constructor(private drawflowService: DrawflowService) { }
+  constructor(private drawflowService: DrawflowService, private apiService: ApiService) { }
 
   exportPlan() {
     let filename = prompt("Enter the filename", "data.json");
@@ -58,5 +59,9 @@ export class HeaderComponent {
 
   runPlan() {
     console.log("running plan")
+    console.log(this.drawflowService.getCurrentModulePlan());
+    this.apiService.sendPlan(this.drawflowService.getCurrentModulePlan()).subscribe(response => {
+      console.log(response);
+    });
   }
 }

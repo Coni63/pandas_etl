@@ -13,3 +13,6 @@ check:
 
 ui:
 	cd pandas-etl-ui && ng serve -o
+
+api:
+	uvicorn pandas_etl_api.main:app --reload
